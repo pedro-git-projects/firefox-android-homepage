@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>~/start</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* Gruvbox dark palette */
+  :root {
+    --bg:        #282828;
+    --bg-alt:    #32302f;
+    --fg:        #ebdbb2;
+    --dim:       #928374;
+    --red:       #fb4934;
+    --green:     #b8bb26;
+    --yellow:    #fabd2f;
+    --blue:      #83a598;
+    --purple:    #d3869b;
+    --aqua:      #8ec07c;
+    --orange:    #fe8019;
+    --border:    #504945;
+
+    --accent:    var(--aqua);
+    --prompt:    var(--red);
+    --path:      var(--green);
+    --link:      var(--blue);
+    --link-hover: var(--purple);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+    font-size: 15px;
+    line-height: 1.5;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    padding: 2rem 1.25rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  header {
+    margin-bottom: 2.5rem;
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 1.25rem;
+  }
+
+  .prompt-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .prompt { color: var(--prompt); font-weight: 700; }
+  .path   { color: var(--path); font-weight: 500; }
+  .cmd    { color: var(--fg); }
+
+  .cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1em;
+    background: var(--accent);
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .meta {
+    color: var(--dim);
+    font-size: 0.85rem;
+    margin-top: 0.75rem;
+  }
+
+  .meta span { color: var(--yellow); }
+
+  main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  section.category {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1rem 1.25rem 1.25rem;
+    transition: border-color 0.2s ease;
+  }
+
+  section.category:hover { border-color: var(--accent); }
+
+  h2 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+  }
+
+  h2::before {
+    content: "// ";
+    color: var(--dim);
+  }
+
+  ul { list-style: none; }
+  li { margin: 0.35rem 0; }
+
+  li::before {
+    content: "→ ";
+    color: var(--orange);
+    margin-right: 0.15rem;
+  }
+
+  a {
+    color: var(--link);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  a:hover, a:focus {
+    color: var(--link-hover);
+    text-decoration: underline;
+  }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.25rem;
+    border-top: 1px dashed var(--border);
+    color: var(--dim);
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 1.25rem 1rem 3rem; font-size: 14px; }
+    main { gap: 1rem; }
+    section.category { padding: 0.85rem 1rem 1rem; }
+    header { margin-bottom: 1.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="prompt-line">
+    <span class="prompt">user@archbox</span>
+    <span class="cmd">:</span>
+    <span class="path">~/start</span>
+    <span class="cmd">$ ls bookmarks/<span class="cursor"></span></span>
+  </div>
+  <div class="meta">
+    <span id="date"></span> &nbsp;|&nbsp; uptime: <span id="uptime"></span>
+  </div>
+</header>
+
+<main>
+
+  <section class="category">
+    <h2>chat</h2>
+    <ul>
+      <li><a href="https://web.telegram.org">telegram</a></li>
+    </ul>
+  </section>
+
+  <section class="category">
+    <h2>media</h2>
+    <ul>
+      <li><a href="https://youtube.com">youtube</a></li>
+      <li><a href="https://wallhaven.cc">wallhaven</a></li>
+    </ul>
+  </section>
+
+  <section class="category">
+    <h2>dev</h2>
+    <ul>
+      <li><a href="https://github.com">github</a></li>
+    </ul>
+  </section>
+
+  <section class="category">
+    <h2>ai</h2>
+    <ul>
+      <li><a href="https://claude.ai">claude</a></li>
+    </ul>
+  </section>
+
+  <section class="category">
+    <h2>boards</h2>
+    <ul>
+      <li><a href="https://boards.4chan.org/wsg/">/wsg/</a></li>
+      <li><a href="https://boards.4chan.org/g/">/g/</a></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  // edit index.html on github to customize this page
+</footer>
+
+<script>
+  const now = new Date();
+  const fmt = now.toString().split(' ').slice(0, 5).join(' ');
+  document.getElementById('date').textContent = fmt;
+
+  const midnight = new Date(now);
+  midnight.setHours(0, 0, 0, 0);
+  const diffMs = now - midnight;
+  const h = Math.floor(diffMs / 3600000);
+  const m = Math.floor((diffMs % 3600000) / 60000);
+  document.getElementById('uptime').textContent = `${h}h ${m}m`;
+</script>
+
+</body>
+</html>
